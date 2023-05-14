@@ -5,21 +5,23 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import AddProduct from "./components/AddProduct";
 import UpdateProduct from "./components/UpdateProduct";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import Protected from "./components/Protected";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <h1>E-Commerce project</h1>
       <Routes>
         <Route path="/login" element={<Login />} />
 
         <Route path="/register" element={<Register />} />
 
-        <Route path="/add" element={<AddProduct />} />
+        <Route path="/add" element={<Protected Cmp={AddProduct} />} />
 
-        <Route path="/update" element={<UpdateProduct />} />
+        <Route path="/update" element={<Protected Cmp={UpdateProduct} />} />
+        <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     </div>
   );
