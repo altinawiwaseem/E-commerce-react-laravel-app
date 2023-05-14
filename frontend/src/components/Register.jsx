@@ -4,10 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
 
 const Register = () => {
+  const inputFields = ["name", "email", "password"];
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const { setUserAuth } = useContext(UserContext);
+  const { setUserAuth, userAuth } = useContext(UserContext);
+
+  useEffect(() => {
+    if (userAuth) {
+      navigate("/add");
+    }
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,24 +44,21 @@ const Register = () => {
       <form onSubmit={handleSubmit}>
         <h1 className="m-4"> Register Page</h1>
         <div className="col-sm-6 offset-sm-3 d-grid gap-3">
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            className="form-control"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            className="form-control"
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            className="form-control"
-          />
+          {inputFields.map((input) => (
+            <input
+              type={
+                input === "email"
+                  ? "email"
+                  : input === "password"
+                  ? "password"
+                  : "text"
+              }
+              name={input}
+              placeholder={input.charAt(0).toUpperCase() + input.slice(1)}
+              className="form-control"
+            />
+          ))}
+
           <button className="btn btn-primary col-3 m-auto ">Sign Up</button>
         </div>
       </form>

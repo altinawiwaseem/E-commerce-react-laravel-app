@@ -1,13 +1,4 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
-const UpdateProduct = ({ userAuth }) => {
-  /* const navigate = useNavigate();
-  useEffect(() => {
-    if (userAuth) {
-      navigate("/add");
-    }
-  }, [userAuth]); */
+const UpdateProduct = () => {
   return <div>Update Product</div>;
 };
 

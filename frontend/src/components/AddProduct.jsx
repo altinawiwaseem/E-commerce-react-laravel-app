@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
-const AddProduct = ({ userAuth }) => {
+const AddProduct = () => {
   return <div>Add Product</div>;
 };
 

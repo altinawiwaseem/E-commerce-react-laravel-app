@@ -5,8 +5,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import AddProduct from "./components/AddProduct";
 import UpdateProduct from "./components/UpdateProduct";
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+
 import Protected from "./components/Protected";
 
 function App() {
