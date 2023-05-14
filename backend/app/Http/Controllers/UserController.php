@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -38,6 +40,21 @@ class UserController extends Controller
     ], 201);;
        
     }
+
+
+    public function login(Request $req)
+    {
+        $credentials = $req->only('email', 'password');
+    
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            $user = Auth::user();
+           return response()->json(['data' => $user], 200);
+        }
+    
+        return response()->json(['error' => 'Invalid login credentials'], 401);
+    }
+    
 }
 
 

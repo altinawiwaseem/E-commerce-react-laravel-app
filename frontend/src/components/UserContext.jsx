@@ -6,6 +6,8 @@ const UserContext = createContext(null);
 const UserContextProvider = ({ children }) => {
   const [userAuth, setUserAuth] = useState(localStorage.getItem("user"));
 
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +23,9 @@ const UserContextProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ userAuth, setUserAuth, handleLogout }}>
+    <UserContext.Provider
+      value={{ userAuth, setUserAuth, handleLogout, user, setUser }}
+    >
       {children}
     </UserContext.Provider>
   );

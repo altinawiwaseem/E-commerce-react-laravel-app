@@ -7,7 +7,6 @@ const Protected = (props) => {
 
   const navigate = useNavigate();
   const { userAuth } = useContext(UserContext);
-  console.log("userAuthProtected", userAuth);
 
   useEffect(() => {
     if (!userAuth) {

@@ -8,7 +8,7 @@ const Register = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const { setUserAuth, userAuth } = useContext(UserContext);
+  const { setUserAuth, userAuth, setUser } = useContext(UserContext);
 
   useEffect(() => {
     if (userAuth) {
@@ -16,7 +16,7 @@ const Register = () => {
     }
   }, []);
 
-  const handleSubmit = async (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
 
@@ -28,24 +28,26 @@ const Register = () => {
       });
 
       if (response.status) {
-        console.log(response.data.data);
+        setUser(response.data.data);
         localStorage.setItem("user", JSON.stringify(response.data.data));
         setUserAuth(true);
         navigate("/add");
       }
     } catch (error) {
-      setError(error.response.data.errors[0]);
       console.log(error);
     }
   };
   return (
     <>
       <p>{error}</p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleRegister}>
         <h1 className="m-4"> Register Page</h1>
         <div className="col-sm-6 offset-sm-3 d-grid gap-3">
-          {inputFields.map((input) => (
+          {inputFields.map((input, i) => (
             <input
+              key={i}
+              required
+              id={i}
               type={
                 input === "email"
                   ? "email"
@@ -58,6 +60,9 @@ const Register = () => {
               className="form-control"
             />
           ))}
+          <p>
+            Have an account? <a href="login">Login</a>
+          </p>
 
           <button className="btn btn-primary col-3 m-auto ">Sign Up</button>
         </div>

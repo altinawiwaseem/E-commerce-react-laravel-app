@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "./UserContext";
 
 const Header = () => {
-  const { userAuth, handleLogout } = useContext(UserContext);
+  const { userAuth, handleLogout, user } = useContext(UserContext);
 
   return (
     <div>
@@ -26,7 +26,7 @@ const Header = () => {
           </Nav>
           {userAuth && (
             <Nav>
-              <NavDropdown title="User Name">
+              <NavDropdown title={user?.name}>
                 <NavDropdown.Item onClick={handleLogout}>
                   Log Out
                 </NavDropdown.Item>
