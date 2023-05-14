@@ -30,6 +30,7 @@ const Header = () => {
                 <NavDropdown.Item onClick={handleLogout}>
                   Log Out
                 </NavDropdown.Item>
+                <NavDropdown.Item>Profile</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           )}

@@ -48,13 +48,7 @@ const Register = () => {
               key={i}
               required
               id={i}
-              type={
-                input === "email"
-                  ? "email"
-                  : input === "password"
-                  ? "password"
-                  : "text"
-              }
+              type={input}
               name={input}
               placeholder={input.charAt(0).toUpperCase() + input.slice(1)}
               className="form-control"
